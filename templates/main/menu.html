@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'main/menu.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2>Меню</h2>
+
+{% if user.is_authenticated and user.is_admin %}
+    <a href="{% url 'create_dish' %}" class="btn btn-primary">Создать блюдо</a>
+{% endif %}
+
+<ul>
+   {% for dish in dishes %}
+    <li>
+        {% if dish.image %}
+            <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+        {% endif %}
+        <span><strong>{{ dish.name }}</strong> - {{ dish.price }} ₽</span>
+
+        {% if user.is_authenticated and user.is_admin %}
+            <form action="{% url 'delete_dish' dish.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Удалить</button>
+            </form>
+        {% endif %}
+    </li>
+{% endfor %}
+
+</ul>
+{% endblock %}

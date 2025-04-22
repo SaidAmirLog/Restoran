@@ -1,0 +1,77 @@
+.profile-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+  background-color: #fffdf7;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Georgia', serif;
+}
+
+.profile-container h2 {
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+  color: #4b3f2f;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.profile-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin-bottom: 25px;
+  object-fit: cover;
+  border: 4px solid #d4c0a1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+  font-size: 1.15rem;
+  margin: 12px 0;
+  color: #5a5143;
+}
+
+.profile-info strong {
+  font-weight: bold;
+  color: #3d342a;
+}
+
+.profile-buttons {
+  margin-top: 35px;
+}
+
+.profile-buttons .btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  margin: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.profile-buttons .btn-primary {
+  background-color: #a67c52;
+  color: white;
+}
+
+.profile-buttons .btn-primary:hover {
+  background-color: #8a6744;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(166, 124, 82, 0.4);
+}
+
+.profile-buttons .btn-secondary {
+  background-color: #c0392b;
+  color: white;
+}
+
+.profile-buttons .btn-secondary:hover {
+  background-color: #a93226;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(192, 57, 43, 0.4);
+}

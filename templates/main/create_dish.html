@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'main/add_dish.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2>Добавить блюдо</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+</form>
+{% endblock %}

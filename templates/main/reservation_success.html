@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/reserve_table.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div style="text-align: center; padding: 50px;">
+    <h2>Спасибо за бронирование!</h2>
+    <p>Мы подтвердили вашу бронь и будем ждать вас в назначенное время.</p>
+    <a href="{% url 'reservation_create' %}" class="btn">Создать ещё одну бронь</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/reviews.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="reviews-container fade-in">
+    <h1 class="page-title">Отзывы о ресторане</h1>
+
+    <div class="reviews-list">
+        {% if reviews %}
+            <ul class="reviews-ul">
+                {% for review in reviews %}
+                    <li class="review-card">
+                        <div class="review-header">
+                            <p class="review-author">
+                                <strong>{{ review.user.username }}</strong>
+                                <span class="review-date">({{ review.created_at|date:"d M Y, H:i" }})</span>
+                            </p>
+                            <p class="review-rating">⭐ {{ review.rating }} / 5</p>
+                        </div>
+                        <p class="review-text">{{ review.text }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-reviews-text">Отзывов пока нет. Будьте первым, кто оставит отзыв!</p>
+        {% endif %}
+    </div>
+
+    <hr class="separator">
+
+{% if user.is_authenticated and user.role != 'admin' %}
+    <h2 class="form-title">Добавить отзыв</h2>
+
+    <form method="post" class="review-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn-submit">Отправить</button>
+    </form>
+{% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: url('/static/img/restaurant.jpg') center/cover no-repeat;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reservation-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 20px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.reservation-card {
+  background: #fff;
+  padding: 30px 35px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  font-family: 'Playfair Display', serif;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+.reservation-card:hover {
+  transform: scale(1.02);
+}
+
+.reservation-card h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #a0793d;
+}
+
+.reservation-card p {
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.reservation-actions {
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.btn-cancel,
+.btn-review {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cancel {
+  background: #ff4d4d;
+  color: white;
+}
+
+.btn-review {
+  background: #f5c978;
+  color: #333;
+}
+
+.btn-cancel:hover {
+  background: #cc0000;
+}
+
+.btn-review:hover {
+  background: #e6b84e;
+}
+
+h1 {
+  color: white !important;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}

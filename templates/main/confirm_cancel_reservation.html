@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="text-2xl font-bold text-center">Вы уверены, что хотите отменить бронирование?</h1>
+    <div class="reservation-info">
+        <p>Бронирование №{{ reservation.id }}</p>
+        <p>Дата: {{ reservation.date }}</p>
+        <p>Время: {{ reservation.time }}</p>
+        <p>Гостей: {{ reservation.guests }}</p>
+        <p>Столик: {{ reservation.table }}</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md">Отменить бронирование</button>
+    </form>
+    <a href="{% url 'my_reservations' %}" class="text-blue-500">Отменить</a>
+{% endblock %}

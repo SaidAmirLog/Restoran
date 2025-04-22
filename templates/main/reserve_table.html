@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Бронирование столика</h2>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: red;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<form method="post" id="reservationForm">
+    {% csrf_token %}
+    <p>{{ form.guests.label }}: {{ form.guests }}</p>
+    <p>{{ form.date.label }}: {{ form.date }}</p>
+    <p>{{ form.time.label }}: {{ form.time }}</p>
+
+    <h3>Выберите блюда:</h3>
+    <div class="dish-list">
+        {% for dish in form.fields.dishes.queryset %}
+         <div class="dish-card" id="card-{{ dish.id }}">
+    <div class="dish-buttons">
+        <button type="button" onclick="event.stopPropagation(); decreaseCount({{ dish.id }})">−</button>
+        <button type="button" onclick="event.stopPropagation(); increaseCount({{ dish.id }})">+</button>
+    </div>
+    <div class="dish-count" id="count-{{ dish.id }}" style="display: none;">0</div>
+    <img src="{{ dish.image.url }}" class="dish-image">
+    <div class="dish-info">
+        <h4>{{ dish.name }}</h4>
+        <p>{{ dish.price }} ₽</p>
+    </div>
+</div>
+
+
+        {% endfor %}
+    </div>
+
+    <input type="hidden" name="selected_dishes" id="selectedDishesInput">
+{% if user.is_authenticated and user.role != 'admin' %}
+    <button type="submit">Забронировать</button>
+{% endif %}
+</form>
+
+<link rel="stylesheet" href="{% static 'main/reserve_table.css' %}">
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="contacts-container">
+    <h2>Контакты</h2>
+
+    <p><strong>📍 Адрес:</strong> ул. Примерная, 123</p>
+    <p><strong>📞 Телефон:</strong> +7 (900) 123-45-67</p>
+    <p><strong>✉ Email:</strong> info@restaurant.com</p>
+
+    <div class="map-container">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A23514ad3d763d0f021ca50d55b9a67fbe85c3b8a26b0138e0d4650b334ab63c4&amp;source=constructor"
+                width="600" height="450" frameborder="0" style="border: 0" allowfullscreen="true" aria-hidden="false" tabindex="0">
+        </iframe>
+    </div>
+</div>
+{% endblock %}

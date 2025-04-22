@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/my_reservations.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="reservation-container fade-in">
+    <div class="w-full max-w-7xl px-4">
+        <h1 class="text-4xl font-extrabold text-center text-white tracking-wide mb-12 uppercase">
+            Мои бронирования
+        </h1>
+
+        {% if reservations %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                {% for reservation in reservations %}
+                    <div class="reservation-card">
+                        <h2>Бронирование №{{ reservation.id }}</h2>
+                        <p><strong>Дата:</strong> {{ reservation.date }}</p>
+                        <p><strong>Время:</strong> {{ reservation.time }}</p>
+                        <p><strong>Гостей:</strong> {{ reservation.guests }}</p>
+                        <p>
+                            <strong>Столик:</strong>
+                            {% if reservation.table %}
+                                №{{ reservation.table.number }}
+                            {% else %}
+                                <em>не назначен</em>
+                            {% endif %}
+                        </p>
+
+                        {% if reservation.dishes.exists %}
+                            <div class="mt-4">
+                                <h3 class="font-medium text-gray-800 mb-1">Выбранные блюда:</h3>
+                                <ul class="list-disc list-inside text-gray-600">
+                                    {% for dish in reservation.dishes.all %}
+                                        <li>{{ dish.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        <div class="reservation-actions">
+                            {% if not reservation.booking_reviews.exists %}
+                                <a href="{% url 'reviews' %}
+" class="btn-review">Оставить отзыв</a>
+                            {% endif %}
+                            <form action="{% url 'cancel_reservation' reservation.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-cancel">Отменить</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-white text-xl mt-20">У вас пока нет бронирований.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
